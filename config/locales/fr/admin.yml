@@ -1,0 +1,497 @@
+fr:
+  #=admin
+  clippy:
+    copy: copier le lien
+    
+  image:
+    edit: modifier
+    delete: supprimer
+    copy: copier      
+      
+  admin:
+    menu:
+      users: Utilisateurs
+      cms: Pages
+      articles: Articles
+      categories: Catégories
+      assets: Media
+      site: Préférences
+      resumes: CV
+      search_resumes: Recherche
+      labels: Labels
+      email: Email
+      stats: Stats
+      uploads: Télécharger
+
+    authlogic:
+      users:
+        edit_my_account: Modification des paramètres
+
+    email:
+      newsletters:
+        index_title: Newsletters
+        add_action: ajouter une newsletter
+        edit_action: modifier
+        destroy_action: supprimer
+        add_title: Ajouter une newsletter
+        edit_title: Modifier la newsletter
+        title: Titre
+        content_before: Contenu avant
+        content_after: Contenu après
+        add: Créer
+        edit: Modifier
+        index_list: liste des newsletters
+        no_newsletter: Aucune newsletter
+        actions: Actions
+        are_you_sure?: Vous êtes sur le point de supprimer cette newsletter. Voulez-vous continuer ?
+        include_sectors: Inclure les secteurs ...
+        included_sectors: Secteurs inclus
+        preview_action: preview
+        template: Modèle
+        templates: Modèles
+
+        events:
+          publish: publier
+          unpublish: dépublier
+
+        flash:
+          newsletter_created: Newsletter ajoutée
+          newsletter_updated: Newsletter modifiée
+          newsletter_destroyed: Newsletter supprimée
+          newsletter_published: Newsletter publiée
+          newsletter_unpublished: Newsletter dépubliée
+          error: Erreur
+
+        errors:
+          header_message: Un problème avec la newsletter
+          title_cant_be_blank: Le titre ne peut être vide
+          template_is_mandatory: Vous devez choisir un modèle
+
+    resumes:
+      no_user: Aucun candidats
+      resume_number: Nb de CV
+      title: Titre
+      content: Fichier
+      created_at: Date
+      state: Status
+      no_title: Aucun titre
+      enabled: Actif
+      disabled: Non actif
+      tags: Tags
+      index: retour aux profils
+      category_name: Nom de la catégorie
+      category_submit: Ok
+      add_category: Ajouter une catégorie
+      edit_category_action: modifier
+      paper_updated_at: Mis à jour
+
+      editing_label_action: modifier labels
+      done_editing_label_action: modification terminée
+      modify_category_order: ordre des catégories
+      back_to_labels: retour aux labels
+      ordering_instruction: Un flash jaune confirme la prise en compte du changement. Attendre ce flash avant de revenir à la liste des labels.
+
+      user_not_active: non activé
+
+
+      no_label: Aucun Label. Commencez par créer une catégorie pour vos labels.
+      filter_by_no_label: Aucun
+      filter_by_label: Filtrer par label
+      all_labels: Tous
+      label_index_title: Liste des labels
+      reorder_label: modifier
+      done_reordering_label: modification terminée
+      add_label: ajouter un label
+      edit_label: modifier
+      labels_without_category: Sans catégorie
+      label:
+        adding_label_to_category: Catégorie
+        candidate_label: Labels du candidat
+        available_label: Labels disponibles
+        name: Nom
+        add: Ajouter
+        edit: Modifier
+        are_you_sure?: "!!!! ATTENTION !!!! Vous êtes sur le point de supprimer ce label. Tous les CVs taggés avec celui-ci seront détaggés. Voulez-vous continuer malgrès tout ?"
+        add_title: Ajouter un label
+        edit_title: Modifier ce label
+
+
+      add_label_category: ajouter une catégorie
+      label_category:
+        name: Nom
+        add: Ajouter
+        edit: Modifier
+        are_you_sure?: "!!!! ATTENTION !!!! Vous êtes sur le point de supprimer cette catégorie et tous les labels associés. Tous les CVs taggés avec ceux-ci seront détaggés. Voulez-vous continuer malgrès tout ?"
+        add_title: Ajouter une catégorie
+        edit_title: Modifier cette catégorie
+
+      error_messages:
+        header_message: Problème technique
+        name_cant_be_blank: Vous devez donner un nom
+
+      flash:
+        label_created: Label crée
+        label_updated: Label modifié
+        label_destroyed: Label supprimé
+        label_category_created: Catégorie ajoutée
+        label_category_updated: Catégorie modifiée
+        label_category_destroyed: Catégorie supprimée
+        category_created: Catégorie créée
+        criteria_created: Critère ajouté
+
+      stats:
+        number_of_candidat_with_resume: Nouveau candidats avec CV depuis une semaine
+        total_user_with_resume: Total de candidats avec CV
+        total_users: Total candidats
+        total_active_users: Total candidats actifs
+        total_unactive_users: Total candidats non actifs
+
+      search:
+        query: Rechercher par mots clés
+        submit: Rechercher
+        show_search_form_advanced: recherche avancée
+        hide_search_form_advanced: recherche simple
+        parameters:
+          title: Votre recherche
+          filter: Mot clé
+
+      uploads:
+        add_action: ajouter un candidat
+        edit_action: modifier
+        add_resume: Ajouter un CV
+        remove_resume: supprimer
+        destroy_action: supprimer
+        add: Ajouter
+        edit: Modifier
+        are_you_sure?: Vous êtes sur le point de supprimer définitivement ce candidat. Voulez vous continuer ?
+
+        flash:
+          user_created: Candidat ajouté
+          user_updated: Candidat modifié
+          user_destroyed: Candidat supprimé    
+      
+      
+  #=home
+  home:
+    articles_and_categories_list: Liste des catégories et des articles    
+  
+  #=site
+  site:
+    edit: modifier
+    submit: Mettre à jour
+    title: Titre du site
+    google_analytics_key: Clé Google Analytics
+    no_google_analytics_key: aucune
+    languages: Langues
+    
+    flash:
+      site_settings_updated: Préférences mises à jour
+
+    errors:
+      title_cant_be_blank: Le titre ne peut être vide
+
+  #=users
+  users:
+    management: Gestion des utilisateurs
+    add: Ajouter
+    add_user: Ajouter un utilisateur
+    add_user_title: Ajouter un utilisateur
+    user_added: Utilisateur ajouté dans la base
+    destroy: supprimer
+    user_deleted: Utilisateur supprimé
+    edit: modifier
+    edit_title: Modification de l'utilisateur
+    user_updated: Utilisateur modifié
+    active?: actif ?
+    show_unactive?: montrer inactifs ?
+    yes_: oui
+    no_: non 
+    activate: activer
+    desactivate: désactiver
+    user_activated: Utilisateur activé
+    user_desactivated: Utilisateur désactivé
+    are_you_sure?: Vous êtes sur le point de supprimer cet utilisateur. Il ne sera pas possible d'annuler cette opération. Voulez-vous continuer ?
+    no_user: Aucun utilisateur
+    roles : Roles
+    
+    show_all?: montrer tous ?
+    created_at: Crée le
+
+  #=roles
+  roles:
+    admin: administrateur
+    user: utilisateur
+    writer: rédacteur
+    publisher: valideur
+    publisher-in-chief: rédacteur en chef
+    resume-reader: lecteur CV
+    seeker: recruteur
+    seeker-in-chief: recruteur en chef
+    email: email
+    email-in-chief: email en chef
+    resume-downloader: télécharge CV
+
+  #=articles
+  articles:
+    your_reading_in: Vous lisez cet article en
+    languages: Vous écrivez cet article en
+    translation_warning: sélectionnez la langue avant de commencez à rédiger
+    Translation: Traduction
+    translate : commencer la traduction
+    translate_this_in: Traduire cet article en
+    change_locale: changer
+    your_creating_in: Vous créez cet article en
+    your_editing_in: Vous modifiez cet article en
+    translated_in: Traduit en
+    exist_in: Existe en
+    intro: Introduction
+    no_intro: Pas d'introduction pour cette article
+    no_content: Pas de contenu pour cette article
+    manage: Gestion des articles
+    start_by_creating_articles: Commencez par créer un article.
+    no_article: Aucun article
+    add_article: Nouvel article
+    edit: Modifier
+    edit_action: modifier
+    create: Créer
+    title: Titre
+    add_title: Création d'un article
+    content: Article
+    index: liste des articles
+    destroy: supprimer
+    are_you_sure?: Vous êtes sur le point de supprimer cet article. Cette action n'est pas réversible. L'article sera perdu à jamais. Etes vous sur de vouloir continuer ?
+    edit_title: Modifier l'article
+    update: Modifier
+    created_at: créer le
+    updated_at: dernière mise à jour le
+    published_at: publié le
+    open_asset_gallery: Gallerie des documents
+    none: aucune
+    all: toutes
+    category: Catégorie
+    categories: Catégories
+    show_category: catégorie
+    archived_at: archivé le
+    keywords: mots clés
+    Keywords: Mots clés
+    all_keywords: Tous
+    filter_by_keyword: Filtrer par mot clé
+    permalink: permalink
+
+    error_messages:
+      title_cant_be_blank: Vous devez donner un titre à cet article
+
+    flash:
+      article_created: Article crée
+      article_deleted: Article supprimé
+      article_updated: Article modifié
+      article_published: Article publié
+      article_unpublished: Cet article n'est plus publié
+      article_archived: Article archivé
+      article_unarchived: Cet article n'est plus archivé
+
+    show_state: état
+    
+    state: état
+    State: Etat
+    states:
+      pending: en cours
+      published: publié
+      archived: archivé
+      all: tous
+
+    events:
+      publish: publier
+      unpublish: dépublier
+      archive: archiver
+      unarchive: désarchiver
+  
+  #=categories
+  categories:
+    description: Description
+    languages: Vous créez cette catégorie en
+    translate : commencer la traduction
+    translate_this_in: Traduire cette categorie en
+    change_locale: changer
+    your_creating_in: Vous créez cette catégorie en
+    your_editing_in: Vous modifiez cette catégorie en
+    translated_in: Traduit en
+    exist_in: Existe en
+    articles: Articles
+    parent: Parent
+    add: Ajouter
+    new: Ajouter une catégorie
+    delete: supprimer
+    edit: Modifier
+    list_title: Gestion des catégories
+    add_title: Ajouter une catégorie
+    edit_title: Modifier une catégorie
+    show_title: Catégorie
+    
+    are_you_sure?: Vous êtes sur le point de supprimer cette catégorie. Cette action n'est pas réversible. La catégorie sera perdu à jamais. Etes vous sur de vouloir continuer ?
+    
+    no_category: Aucune catégorie
+    none: aucune
+    
+    edit_action: modifier
+    delete_action: supprimer
+
+    name: Nom
+    actions: Actions
+
+    flash:
+      category_created: Catégorie créée
+      category_deleted: Catégorie supprimée
+      category_updated: Catégorie mise à jour
+    
+    error_messages:
+      name_cant_be_blank: Vous devez donner un nom à cette catégorie
+
+  #=assets
+  assets:
+    created_at: Crée le
+    content_type: Type de fichier
+    Download: Télécharger
+    original: Original
+    view_list: Liste
+    view_icon: Icones
+    no_asset: Aucun média
+    updated_at: Date
+    views: Vues
+    add: Ajouter
+    add_asset: Ajouter un média
+    delete: supprimer
+    edit: Modifier
+    list_title: Gestion des médias
+    add_title: Ajouter un média
+    edit_title: Modifier un média
+    show_title: Voir le média
+    
+    edit_action: modifier
+    delete_action: supprimer
+    
+    name: Titre
+    actions: Actions
+    image: Image (10Mo max)
+    url: URL
+    size: Taille
+    filename: Nom du fichier
+    
+    asset_tag: Mots clés
+    asset_tag_list: Mots clés
+    filter_by_asset_tag: Filtrer par mot clé
+    all_asset_tags: Tous
+    tags: Mots clés
+    
+    copy_to_clipboard: copier le lien
+    
+    are_you_sure?: Vous êtes sur le point de supprimer ce document. Voulez vous continuer ?
+    
+    flash:
+      asset_created: Média ajouté
+      asset_deleted: Média supprimé
+      asset_updated: Média modifié
+      
+    error_messages:
+      name_cant_be_blank: Vous devez donner un nom à ce média
+      image_cant_be_blank: Vous devez importer une image. cliquez sur "Parcourir ..."
+      image_less_than_5M: Le média doit être inférieure à 10Mo
+
+  #=authlogic
+  authlogic:
+    login_page_title: Identification
+      
+    error_messages:
+      login_blank: Vous devez indiquer votre email
+      login_not_found: Cet email n'est pas dans nos base
+      login_invalid: L'identifiant doit uniquement contenir des lettres, des nombres nombres, des espaces, et .-_@.
+      consecutive_failed_logins_limit_exceeded: Le nombre maximum de tentatives est dépassé, le compte a été désactivé.
+      email_invalid: L'email doit correspondre a une adresse email valide.
+      password_blank: Le mot de passe ne peut être vide
+      password_invalid: Le mot de passe n'est pas valide
+      not_active: Votre compte n'est pas activé
+      not_confirmed: Votre compte n'est pas confirmé
+      not_approved: Votre compte n'a pas été approuvé
+      no_authentication_details: Vous n'avez pas fourni les informations nécessaire à votre identification
+      password_length: Le mot de passe n'est pas valide
+      email_length: L'email n'a pas la bonne taille (au moins 6 caractères; maximum 100)
+      email_format: L'email n'est pas valide
+      email_uniqueness: Cet email est déjà dans notre base
+      password_confirmation_length: La confirmation du mot de passe n'est pas valide
+      confirmation_of_password_field: La confirmation ne concorde pas avec le mot de passe
+
+    my_account: mon compte
+    admin: admin
+    site: site
+    home: accueil
+
+    models:
+      user_session: Session
+      user: Utilisateur
+    attributes:
+      user_session:
+        login: Identifiant
+        email: Votre Email
+        password: Mot de passe
+        remember_me: Se souvenir de moi
+      user:
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        created_at: Crée le
+    flash:
+      require_no_user: "Vous devez vous déconnecter pour avoir accès à cette page"
+      require_user: "Vous devez être connecté pour avoir accès à cette page"
+      access_denied: "Accès refusé"
+      account_activated: "Votre compte a été activé"
+      token_expired: "Erreur : votre token doit être faux ou a expiré."
+      reset_password_instructions_emailed: "Des instructions pour modifier votre mot de passe vous ont été envoyé par email. Merci de consulter vos emails."
+      no_user_with_that_email: "Aucun utilisateur n'a été trouvé avec cette adresse"
+      password_updated: "Mot de passe mis à jour avec succès"
+      could_not_locate_account: "Nous n'avons pas pu retrouver votre compte. Essayez de copier-coller l'URL depuis votre email dans votre navigateur ou recommencez la réinitialisation du mot de passe"
+      logged_in: "Vous êtes connecté"
+      logged_out: "Vous êtes déconnecté"
+      account_created: "Votre compte a été crée. Vérifier votre email afin de suivre la procédure de confirmation."
+      user_updated: 'Données mises à jour'
+      password_not_reset: Le mot de passe n'a pas été réinitialisé
+
+    activations:
+      set_your_password: "Mot de passe"
+      password_confirmation: "Confirmation du mot de passe"
+      activate_your_account: "Activé votre compte"
+      activate: "Activé"
+    password_resets:
+      forgot_your_password: Mot de passe oublié?
+      update: "Modifiez mon mot de passe et connectez moi"
+      change_my_password: "Modifier mon mot de passe"
+      change_your_password: "Modifier votre mot de passe"
+      manage_your_password: Gestion du mot de passe
+      help: "Le mot de passe que vous utilisez pour vous connecter"
+      forgot_password: "Mot de passe oublié"
+      forgot_password_paragraph: "Remplissez le formulaire ci-dessous. La procédure à suivre pour réinitialiser votre mot de passe va vous être envoyé par email."
+      reset_my_password: "Réinitialisez mon mot de passe"
+    user_sessions:
+      login: Identification
+      log_in: s'identifier
+    logout: se déconnecter
+    login: s'identifier
+    users:
+      change_password: "Modifier le mot de passe"  
+      update: "Modifier"
+      edit_my_account: Modifier mon compte
+      my_profile: "Mon profile"
+      edit: Modifier
+      register: Inscription
+      register_title: S'enregistrer
+      signin: s'enregistrer
+    notifier:
+      password_reset_instructions: Votre mot de passe a été réinitialisé
+      activation_instructions: Vous devez activer votre compte
+      activation_confirmation: Votre compte est activé
+
+    status: statut
+    enable: activé
+    disable: désactivé
+    
+    edit: modifier
+    cancel: annuler
+    Password: Mot de passe

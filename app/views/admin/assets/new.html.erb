@@ -1,0 +1,10 @@
+<h2><%= t('assets.add_title') %></h2>
+
+<%- form_for @asset, :url => { :controller => "assets", :action => "create" }, :html => { :multipart => true } do |f| -%>
+  
+  <%= render :partial => "form", :locals => { :f => f } %>
+  
+  <%= submit_tag t('assets.add') %>
+  <%= back_to_index_link %>
+
+<%- end -%>

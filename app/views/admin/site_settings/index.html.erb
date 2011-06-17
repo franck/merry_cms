@@ -1,0 +1,8 @@
+<p><%= link_to t('site.edit'), edit_admin_site_setting_url(@site_setting) %></p>
+
+<p><strong><%= t('site.title') %></strong> : <%= @site_setting.title %></p>
+<p><strong><%= t('site.google_analytics_key') %></strong> : <%= @site_setting.google_analytics_key.blank? ?  t('site.no_google_analytics_key') : @site_setting.google_analytics_key %></p>
+
+<p>
+  <strong><%= t('site.languages') %></strong> : <%= @site_setting.language_codes.join(', ')%>
+</p>

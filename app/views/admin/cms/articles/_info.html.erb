@@ -1,0 +1,49 @@
+<div id="article_info">
+  <ul>
+    <% if @languages.size > 1 %>
+      
+      <% if params[:action] == "edit" %>
+        <li id="first">
+          </span><%= t('articles.your_editing_in') %></span>&nbsp;:&nbsp;
+          <img src="/images/<%= params[:language] || @current_edition_language %>.png" />
+        </li>
+      <% elsif params[:action] == "show" && !params[:language].blank? %>
+        <li id="first">
+          </span><%= t('articles.your_reading_in') %></span>&nbsp;:&nbsp;
+          <img src="/images/<%= params[:language]%>.png" />
+        </li>
+      <% end %>
+      
+      <li <%= "id='first'" if params[:action] == "show" %>>
+        <%= t('articles.exist_in')%>&nbsp;:&nbsp;
+        <% for language in @translated_languages %>
+        <img src="/images/<%= language %>.png" />
+        <% end -%>
+      </li>
+      <li><strong><%= t('articles.state') %></strong> : <%= t("articles.states.#{@article.state}") %></li>
+      
+    <% else %>
+      <li id="first"><strong><%= t('articles.state') %></strong> : <%= t("articles.states.#{@article.state}") %></li>
+    <% end %>
+  
+    <% unless @article.keyword_list.empty? %>
+    <li><strong><%= t('articles.keywords') %></strong> : <%= @article.keyword_list.join(", ") %></li>
+    <% end %>
+  
+    <% unless @article.category.nil? %>
+      <li><strong><%= t('articles.show_category') %></strong> : <%= @article.category.path %></li>
+    <% end %>
+    
+    <% unless @article.published_at.nil? %>
+    <li><strong><%= t('articles.published_at') %></strong> : <%=l @article.published_at, :format => :short %></li>
+    <% end %>
+    
+    <% unless @article.archived_at.nil? %>
+    <li><strong><%= t('articles.archived_at') %></strong> : <%=l @article.archived_at, :format => :short %></li>
+    <% end %>
+  
+    <li><strong><%= t('articles.created_at')%></strong> : <%=l @article.created_at, :format => :short %></li>
+    <li id="last"><strong><%= t('articles.permalink') %></strong> : <%= @article.permalink_locale(params[:language] || @current_edition_language || "fr") %></li>
+  </ul>
+</div>
+<div class="clear"></div>

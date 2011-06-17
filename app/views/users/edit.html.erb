@@ -1,0 +1,11 @@
+<h2><%= t('authlogic.users.edit_my_account') %></h2>
+
+<% form_for @user, :url => account_path do |f| %>
+  
+  <%= error_messages_for :user %>
+  
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit t('authlogic.users.update') %>
+<% end %>
+
+<br /><%= link_to t('authlogic.users.my_profile'), account_path %>

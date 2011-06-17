@@ -1,0 +1,52 @@
+<% if @languages.size > 1%>
+<div id="translation-box">
+  <% if @translated_languages.size > 1 %>
+  <%- form_for @category, :url => { :controller => "categories", :action => "edit", :id => @category }, :html => {:method => "get"} do |f| -%>
+    <label for="select_language"><%= t('categories.your_editing_in') %></label>&nbsp;:&nbsp;
+    <%= select_tag :language, options_for_select(@translated_languages, params[:language] || @current_edition_language), :id => "select_language" %>  
+    <%= f.submit t("categories.change_locale")%>
+  <% end %>
+  <% else %>
+    <label for="select_language"><%= t('categories.your_editing_in') %></label>&nbsp;:&nbsp;
+    <img src="/images/<%= params[:language] || @current_edition_language %>.png" />
+  <% end %>
+
+  <% if @not_translated_languages.size > 0 %>
+  &nbsp;&nbsp;//&nbsp;&nbsp;
+  <%- form_for @category, :url => { :controller => "categories", :action => "edit", :id => @category }, :html => {:method => "get"} do |f| -%>
+    <label for="translate_language"><%= t('categories.translate_this_in') %></label>&nbsp;:&nbsp;
+    <%= select_tag :language, options_for_select(@not_translated_languages), :id => "translate_language" %>  
+    <%= f.submit t("categories.translate")%>
+  <% end %>
+  <% end %>
+</div>
+<div class="clear"></div>
+<% end %>
+
+<h2><%= t('categories.edit_title') %></h2>
+
+<% form_for @category, :url => { :controller => "categories", :action => "update", :id => @category } do |f| -%>
+
+  <%= error_messages_for :category %>
+
+  <input type="hidden" name="language" value="<%= params[:language] || I18n.locale %>" %>
+
+  <% unless @category.root? -%>
+  <%= f.label :parent_id, t('categories.parent') %>&nbsp;:&nbsp;
+  <%= f.select :parent_id, nested_set_options(Category, @category) {|i| "#{'–' * i.level} #{i.name}" } %><br/>
+  <% end -%>
+
+  <%= f.label :name, t('categories.name'), :class => "required" %>&nbsp;:&nbsp;  
+  <input id="category_name" name="category[name]" size="30" type="text" value="<%= @category.name_locale(params[:language] || @current_edition_language) %>" /><br/>
+  <br/>
+  
+  <%= f.label :description, t('categories.description')%>&nbsp;:&nbsp;<br/>
+  <%= f.text_area :description, :size => "50x5"%><br/>
+  <br/>
+  
+  <strong>Permalink</strong> : <%= @category.permalink %><br/>
+  <br/>
+  
+  <%= f.submit t('categories.edit') %>
+  <%= link_to t('cancel'), admin_cms_categories_url %>
+<% end -%>

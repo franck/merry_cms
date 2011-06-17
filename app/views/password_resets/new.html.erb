@@ -1,0 +1,11 @@
+<h2><%= t('authlogic.password_resets.forgot_password') %></h2>
+
+<%= t('authlogic.password_resets.forgot_password_paragraph') %><br />
+<br />
+
+<% form_tag password_resets_path do %>
+  <label>Email:</label><br />
+  <%= text_field_tag "email" %><br />
+  <br />
+  <%= submit_tag t('authlogic.password_resets.reset_my_password') %>
+<% end %>

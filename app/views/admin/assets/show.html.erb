@@ -1,0 +1,47 @@
+<%- unless @asset.nil? -%>
+<h2><%= @asset.name %></h2>
+
+<ul>
+  <li><strong><%= t('assets.created_at')%></strong> : <%= l(@asset.created_at, :format => :short) %></li>
+  <li><strong><%= t('assets.size')%></strong> : <%= number_to_human_size(@asset.image_file_size, :precision => 0) %></li>
+  <li><strong><%= t('assets.content_type')%></strong> : <%= @asset.image.content_type %></li>
+</ul>
+
+<p>
+  <%= t('assets.Download') %>&nbsp;:&nbsp;
+  <%= link_to @asset.image_file_name, @asset.image.url %>
+  <%= image_tag(display_small_asset_preview(@asset)) %>
+</p>
+
+
+<% if @asset.video? %>
+<h4>Video</h4>
+
+<div id='mediaspace'>This div will be replaced</div>
+
+<script type="text/javascript">
+  var so = new SWFObject('/flash/player.swf','mpl','470','320','9');
+  so.addParam('allowscriptaccess','always');
+  so.addParam('allownetworking','all');
+  so.addParam('allowfullscreen','true');
+  
+  var embedCode = escape('<embed src="/flash/player.swf" width="470" height="320" bgcolor="000000" allowfullscreen="true" allowscriptaccess="always" flashvars="file=/system/images/<%= @asset.id %>/original/<%= @asset.image_file_name %>&plugins=embed-1"></embed>');
+  
+  so.addParam('flashvars',
+    "&file=/system/images/<%= @asset.id %>/original/<%= @asset.image_file_name %>&plugins=embed-1&embed.code="+embedCode);
+  so.write('mediaspace');
+</script>
+
+
+<% elsif @asset.image? -%>
+<h4><%= t('assets.original')%></h4> 
+<%= image_tag @asset.image.url() %>
+
+<% else %>
+
+<% end -%>
+<%- end -%>
+
+<p>
+<%= link_to t('back'), admin_assets_url %>
+</p>

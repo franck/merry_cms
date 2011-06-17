@@ -1,0 +1,20 @@
+<%= error_messages_for :asset %>
+
+<%= f.label :name, t('assets.name'), :class => "required" %><br />
+<%= f.text_field :name, :size => 40 %><br />
+<br />
+
+<%- fields_for @asset do |asset_tag_field| -%>
+  <%= asset_tag_field.label :asset_tag_list, t('assets.asset_tag') %><br/>
+  <%= asset_tag_field.text_field :asset_tag_list, :size => 40 %><br/>
+<%- end -%>
+<p id="asset_tag_list"><%= Asset.tag_list.join(', ')%></p>
+<br/>
+
+<%= f.label :image, t('assets.image'), :class => "required" %><br />
+<%= f.file_field :image %><br />
+<br />
+
+<% if params[:layout] == "gallery" %>
+<%= hidden_field_tag :layout, "gallery" %>
+<% end %>

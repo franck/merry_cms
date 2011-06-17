@@ -1,0 +1,29 @@
+<% form_for @site_setting, :url => { :controller => "site_settings", :action => "update", :id => @site_setting } do |f| -%>
+
+  <%= error_messages_for :site_setting %>
+  
+  
+  <%= f.label :title, t("site.title"), :class => "required" %>
+  <%= f.text_field :title %>
+  <br/><br/>
+  
+  <%= f.label :google_analytics_key, t("site.google_analytics_key") %>
+  <%= f.text_field :google_analytics_key %>
+  <br/><br/>
+  
+  
+  
+  <ul id="site_settings_languages">
+    <li><label><%= t('site.languages') %> :</label></li>
+  <% for language_code in @languages %>
+    <li class="language" id="language_<%= language_code %>"><%= check_box_tag "languages[]", language_code, @site_setting.languages.detect{|l| l.code == language_code } %><%= language_code %></li>
+  <% end -%>
+  </ul>
+  <div class="clear"></div>
+  
+
+  <%= f.submit t('site.submit') %>
+  <%= link_to t('back'), admin_site_settings_url %>
+  <br/>
+  
+<% end -%>

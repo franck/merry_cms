@@ -1,0 +1,23 @@
+development:
+  site: Defaut Site Title
+  domain: localhost:3000
+  email: "Defaut Site Title <site@domain.com>"
+  title: "[developpement] site title"
+
+staging:
+  site: Defaut Site Title
+  domain: stage.domain.com
+  title: "[stage] site title"
+  email: "Defaut Site Title <site@domain.com>"
+
+
+test:
+  site: Defaut Site Title
+  domain: test.host
+  email: "Merrycreation <site@domain.com>"
+
+production:
+  site: Defaut Site Title
+  domain: domain.com
+  title: "[production] site title"
+  email: "Merrycreation <site@domain.com>"

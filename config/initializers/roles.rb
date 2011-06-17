@@ -1,0 +1,1 @@
+Role::ROLES = %w{admin writer publisher publisher-in-chief}

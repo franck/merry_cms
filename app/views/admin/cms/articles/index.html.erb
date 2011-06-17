@@ -1,0 +1,85 @@
+<p>
+<%= link_to t('articles.add_article'), url_for(params.merge(:action => "new")) %>
+</p>
+
+<h2><%= t('articles.manage') %></h2>
+
+<form action="/admin/cms/articles" method="get" id="pagination_filter">
+  <label for="per_page"><%= t('pagination.per_page') %></label>
+  <%= select_tag "per_page", options_for_select(["5", "10", "20", "50", "100"], params[:per_page] || "10") %>&nbsp;
+
+  <label for="state"><%= t('articles.show_state') %></label>
+  <%= select_tag "state", options_for_select(get_states, params[:state]) %>&nbsp;
+  
+  <label for="category"><%= t('articles.show_category') %></label>
+  <%= select_tag "category", options_for_select(get_categories, params[:category].to_i) %>&nbsp;
+
+  <label for="filter"><%= t('pagination.filter_by_title') %></label>&nbsp;
+  <%= text_field_tag "filter", params[:filter], :size => "15" %>
+  
+  <input type="hidden" name="keyword" value="<%= params[:keyword]%>">
+
+  <input id="pagination_submit" name="commit" type="submit" value="<%= t('pagination.go') %>" />
+</form>
+
+<div id="keyword_filter">
+  <%= t('articles.filter_by_keyword') %>&nbsp;:&nbsp;
+  <%= link_to t('articles.all_keywords'), url_for(params.merge(:keyword => "" )), (params[:keyword].blank? ? {:class => "current"} : {}) %>
+<% for keyword in @keywords %>
+  <%= link_to keyword.name, url_for(params.merge(:keyword => keyword.name )), (params[:keyword] == keyword.name ? {:class => "current"} : {}) %>
+<% end -%>
+</div>
+
+<%= will_paginate @articles %>
+
+<table id="article_list" style="clear:both;">
+  <thead>
+    <tr>
+      <%= sortable_table_header :name => t('articles.title'), :sort => "title" %>
+      <%= sortable_table_header :name => t('articles.created_at'), :sort => "created_at" %>
+      <%= sortable_table_header :name => t('articles.state'), :sort => "state" %>
+      <th><%= t('articles.categories') %></th>
+      <th><%= t('articles.Keywords') %></th>
+      
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @articles.size == 0 -%>
+      <tr><td colspan="6"><%=t('articles.no_article')%></td></tr>
+    <% else -%>    
+      <% @articles.each do |article| -%>
+        <tr id="article_<%= article.id %>" <%= "class='translated'" if article.translated_languages.size > 1 %>>
+          <td>
+            <%- if @languages.size > 1 -%>
+            <img src="/images/<%= article.title.locale.to_s %>.png">&nbsp;&nbsp;
+            <%- end -%>
+            <%= link_to article.title, admin_cms_article_url(article), :id => "article_#{article.id}" %></td>
+          <td><%= l(article.created_at, :format => :only_date) %></td>
+          <td><%= t('articles.states.' + article.aasm_current_state.to_s) %></td>
+          <td><%= article.category.path unless article.category.nil? %></td>
+          <td><%= article.keyword_list.join(", ")%></td>      
+          
+          <td>
+            <%= action_links(article) %>
+          </td>
+        </tr>
+        <% unless article.translated_languages.size == 1 %>
+        <% (article.translated_languages - I18n.locale.to_a).each do |language| %>
+        <tr id="article_<%= article.id %>_<%= language %>" class="translated_title">
+          <td colspan="6">&nbsp;&nbsp;&nbsp;<img src="/images/<%= language %>.png">&nbsp;&nbsp;<%= link_to article.title_locale(language), admin_cms_article_url(article, :language => language) %></td>
+        </tr>
+        <% end %><% end %>
+<% end -%>
+<% end -%>
+  </tbody>
+  <tfoot>
+  <tr><td colspan="6">&nbsp;</td></tr>
+  </tfoot>
+</table>
+
+<%= will_paginate @articles %>
+
+<p>
+<%= link_to t('articles.add_article'), url_for(params.merge(:action => "new")) %>
+</p>

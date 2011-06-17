@@ -1,0 +1,7 @@
+<h2><%= t('home.articles_and_categories_list') %></h2>
+
+<% if Article.published.size == 0 %>
+<%= t('articles.no_article') %>
+<% else %>
+<%= format_nested_set(Category.root) %>
+<% end %>

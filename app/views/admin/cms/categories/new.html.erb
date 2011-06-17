@@ -1,0 +1,24 @@
+<h2><%= t('categories.add_title') %></h2>
+
+<% form_for @category, :url => { :controller => "categories", :action => "create" } do |f| -%>
+
+  <%= error_messages_for :category %>
+
+  <% unless Category.count == 0 -%>
+    <%= f.label :parent_id, t('categories.parent') %>&nbsp;:&nbsp;
+    <%= f.select :parent_id, nested_set_options(Category, @category) {|i| "#{'– ' * i.level}#{i.name}" } %><br/>
+  <% end -%>
+  
+  <% if @languages.size > 1 %>
+    <label for="select_language"><%= t('categories.languages')%></label>&nbsp;:&nbsp;
+    <%= select_tag :language, options_for_select(@languages, I18n.locale), :id => "select_language" %><br />
+    <br />
+  <% end %>
+
+  <%= f.label :name, t('categories.name'), :class => "required" %>&nbsp;:&nbsp;
+  <%= f.text_field :name %><br/>
+  <br/>
+  
+  <%= f.submit t('categories.add') %>
+  <%= link_to t('cancel'), admin_cms_categories_url %>
+<% end -%>

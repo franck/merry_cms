@@ -1,0 +1,14 @@
+<h2><%= t('authlogic.activations.activate_your_account')%></h2>
+
+<% form_for @user, :url => { :controller => "activations", :action => "create", :id => @user.id }, :html => { :method => :post } do |form| %>
+
+    <%= error_messages_for :user %>
+    
+    <%= form.label :password, t('authlogic.activations.set_your_password') %><br />
+    <%= form.password_field :password %><br />
+    <br />
+    <%= form.label t('authlogic.activations.password_confirmation') %><br />
+    <%= form.password_field :password_confirmation %><br />
+    <br />
+    <%= form.submit t('authlogic.activations.activate') %>
+<% end %>

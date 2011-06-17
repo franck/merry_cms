@@ -1,0 +1,37 @@
+--- 
+javascripts:
+- home: 
+  - pagination
+  - prototype
+  - application
+  - home
+- base: 
+  - pagination
+  - application
+- admin:
+  - jquery.curvycorners.packed
+  - pagination
+  - admin
+- gallery:
+  - jquery
+  - pagination
+  - gallery
+stylesheets:
+- home:
+  - ie
+  - screen
+  - home  
+- base:
+  - ie
+  - screen
+  - application
+- admin:
+  - ie
+  - screen
+  - application
+  - admin
+- gallery:
+  - ie
+  - screen
+  - application
+  - gallery

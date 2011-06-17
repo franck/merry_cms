@@ -1,0 +1,64 @@
+<h2><%= t('categories.list_title') %></h2>
+
+<table>
+<thead>
+  <tr>
+    <th width="20px"></t>
+    <th><%= t('categories.name') %></th>
+    <th>permalink</th>
+    <th><%= t('categories.articles')%></th>
+    
+    <% if @languages.size > 1 %>
+    <th><%= t('categories.translated_in')%></th>
+    <% end %>
+    
+    <th><%= t('categories.actions')%></th>
+  </tr>
+</thead>
+<tbody>
+<% if @categories.nil? %>
+
+<tr><td colspan="<%= @languages.size > 1 ? '6' : '5'%>"><%= t('categories.no_category')%></td></tr>
+<% else %>
+<% for category in @categories -%>
+<tr id="<%= dom_id(category)%>">
+<td>
+  <% unless category.description.nil? or category.description.blank? %>
+  <script type="text/javascript">
+  $("#info_<%= dom_id(category)%>").bt("<%= category.description %>");
+  </script>
+  <div id="info_<%= dom_id(category)%>">
+    <img src="/images/help.png" alt="help" />
+  </div>
+  <% else %>
+  &nbsp;
+  <% end %>
+</td>
+
+<td><%= "#{'-&nbsp;'*(category.level)}" %><%= link_to category.name, admin_cms_articles_url(:category => category.id) %></td>
+<td><%= category.permalink %></td>
+<td><%= category.articles.size == 0 ? "" : category.articles.size  %></td>
+
+<% if @languages.size > 1 %>
+<td>
+  <% if category.name == "root" %>
+    &nbsp;
+  <% else %>
+    <% category.translated_languages.each do |language| %>
+      <img alt="<%= language %>" src="/images/<%= language %>.png">
+    <% end %>
+  <% end %>
+</td>
+<% end %>
+
+<td><%= action_links(category) unless category.name == "root" %></td>
+</tr>
+<% end -%>
+<% end -%>
+</tbody>
+</table>
+
+
+
+
+<%= link_to t('categories.new'), new_admin_cms_category_url %>

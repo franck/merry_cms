@@ -1,0 +1,50 @@
+<p>
+<%= link_to t('articles.add_article'), url_for(:action => "new", :category => params[:category]) %>
+</p>
+
+<h2><%= t('articles.add_title') %></h2>
+
+<%- form_for @article, :url => { :controller => "articles", :action => "create" } do |f| -%>
+
+  <%= error_messages_for :article %>
+  
+  <% if @languages.size > 1 %>
+    <label for="select_language"><%= t('articles.languages')%></label>&nbsp;:&nbsp;
+    <%= select_tag :language, options_for_select(@languages, I18n.locale), :id => "select_language" %><br />
+    <br />
+  <% end %>
+
+  <%= f.label :title, t('articles.title'), :class => "required" %><br />
+  <%= f.text_field :title, :size => 80, :tabindex => "1" %><br />
+  <br />
+
+  <%- unless Category.count == 0 -%>
+  <% fields_for @article do |category| %>
+  <%= category.label :category_id, t('articles.category') %>&nbsp;:&nbsp;
+  
+  <%= category.select :category_id, nested_set_options(Category) {|i| "#{'–' * i.level} #{i.name}" }, { :selected => params[:category] } %><br/>
+  
+  <% end -%>
+  <br/>
+  <%- end -%>
+
+  <%- fields_for @article do |keywords_field| -%>
+    <%= keywords_field.label :keyword_list, t('articles.Keywords') %><br/>
+    <%= keywords_field.text_field :keyword_list,:size => 70, :tabindex => "2" %><br/>
+  <%- end -%>
+  <p id="asset_tag_list"><%= Article.tag_list.join(', ')%></p>
+  <br/>
+
+  <p>
+  <%= link_to t('articles.open_asset_gallery'), gallery_admin_assets_url, :popup => ['gallery', "height=600,width=800,scrollbars=yes"] %>
+  </p>
+
+  <%= f.label :intro, t('articles.intro') %><br />
+  <%= f.text_area :intro, :size => "80x10", :class => "mceEditor", :tabindex => "3" %><br />
+
+  <%= f.label :content, t('articles.content') %><br />
+  <%= f.text_area :content, :size => "80x26", :class => "mceEditor", :tabindex => "4" %><br />
+  
+  <%= submit_tag t('articles.create') %>
+  <%= link_to t('cancel'), admin_cms_articles_url %>
+<%- end -%>

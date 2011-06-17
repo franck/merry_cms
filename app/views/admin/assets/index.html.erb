@@ -1,0 +1,96 @@
+<h2><%= t('assets.list_title') %></h2>
+
+<% if @assets.size == 0 %> 
+  <p><%= t('assets.no_asset') %></p> 
+<%- else -%>
+    
+  <p class="assets">
+  <span><%= t('assets.views') %>&nbsp;:&nbsp;</span>
+  <%= link_to image_tag("application_view_list.png", :title => t('assets.view_list')), url_for(params.merge(:view => "list"))%>&nbsp;
+  <%= link_to image_tag("application_view_icons.png", :title => t('assets.view_icon')), url_for(params.merge(:view => "icons"))%>
+  </p>
+
+  <form action="/admin/assets" method="get" id="pagination_filter">
+    <label for="per_page"><%= t('pagination.per_page') %></label>
+    <%= select_tag "per_page", options_for_select(["5", "10", "20", "50", "100"], params[:per_page] || "10") %>&nbsp;
+
+    <label for="filter"><%= t('pagination.filter_by_title') %></label>&nbsp;
+    <%= text_field_tag "filter", params[:filter], :size => "15" %>
+
+    <% if params[:layout] == "gallery" %>
+    <%= hidden_field_tag :layout, "gallery" %>
+    <% end %>
+
+    <input id="pagination_submit" name="commit" type="submit" value="<%= t('pagination.go') %>" />
+  </form>
+
+  <div id="keyword_filter">
+    <%= t('assets.filter_by_asset_tag') %>&nbsp;:&nbsp;
+    <%= link_to t('assets.all_asset_tags'), url_for(params.merge(:asset_tag => "" )), (params[:asset_tag].blank? ? {:class => "current"} : {}) %>
+  <% for asset_tag in @asset_tags %>
+    <%= link_to asset_tag.name, url_for(params.merge(:asset_tag => asset_tag.name )), (params[:asset_tag] == asset_tag.name ? {:class => "current"} : {}) %>
+  <% end -%>
+  </div>
+
+  <%= will_paginate @assets %>
+
+  <% if session[:view] == "icons" %>
+
+    <ul class="assets">
+    <%- for asset in @assets -%>
+    <li class="thumb">
+      <div class="top">
+        <span><%= asset.name %> <em>(<%= number_to_human_size(asset.image_file_size, :precision => 0) %>)</em></span>
+      </div>
+      <span class="picture" style="background-image: url('<%= display_asset_preview(asset) %>')"><%= link_to asset.name, asset.image.url  %></span>
+      <div class="bottom">
+        <div class="left">
+        <%= link_to image_tag("image_edit.png", :title => t("image.edit")), url_for(params.merge(:action => :edit, :id => asset)) %>
+        <%= clippy(asset.image.url) %>
+        </div>
+        <div class="right">
+          <%= link_to image_tag("image_delete.png", :title => t("image.delete")), url_for(params.merge(:action => :destroy, :id => asset)), :method => :delete, :confirm => t('assets.are_you_sure?') %>
+        </div>
+      </div>
+    </li>
+    <%- end -%>
+    </ul>
+
+    <div class="clear"></div>
+
+  <%- else -%>
+
+    <table>
+      <thead>
+      <tr>
+        <%= sortable_table_header :name => t('assets.name'), :sort => "name" %>
+        <th><%= t('assets.tags') %></th>
+        <th><%= t('assets.filename') %></th>
+        <%= sortable_table_header :name => t('assets.updated_at'), :sort => "image_updated_at" %>
+        <%= sortable_table_header :name => t('assets.size'), :sort => "image_file_size" %>
+        <th colspan="3"><%= t('assets.actions') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <%- for asset in @assets -%>
+      <tr>
+        <td><%= link_to asset.name, admin_asset_url(asset)  %></td>
+        <td><%= asset.asset_tag_list.join(', ')%></td>
+        <td><%= image_tag(display_small_asset_preview(asset)) %>&nbsp;<%= asset.image_file_name %></td>
+        <td><%= l(asset.image_updated_at, :format => :short) %></td>
+        <td><%= number_to_human_size(asset.image_file_size, :precision => 0) %></td>
+        <td><%= clippy(asset.image.url) %><%= t('clippy.copy')%></td>
+        <td><%= link_to t('assets.edit_action'), url_for(params.merge(:action => :edit, :id => asset)) %></td>
+        <td><%= link_to t('assets.delete_action'), url_for(params.merge(:action => :destroy, :id => asset)), :method => :delete %></td>
+      </tr>
+      <%- end -%>
+      </tbody>
+    </table>
+
+  <%- end -%>
+  <%= will_paginate @assets %>
+<%- end -%>
+
+<p>
+<%= link_to t('assets.add_asset'), url_for(params.merge(:action => "new")) %>
+</p>

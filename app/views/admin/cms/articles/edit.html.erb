@@ -1,0 +1,84 @@
+<p>
+<%= link_to t('articles.add_article'), url_for(:action => "new", :category => @article.category.id.to_s) %>
+</p>
+
+<% if @languages.size > 1 %>
+<div id="translation-box">
+  <% if @translated_languages.size > 1 %>
+  <%- form_for @article, :url => { :controller => "articles", :action => "edit", :id => @article }, :html => {:method => "get"} do |f| -%>
+    <label for="select_language"><%= t('articles.your_editing_in') %></label>&nbsp;:&nbsp;
+    <%= select_tag :language, options_for_select(@translated_languages, (params[:language] || @current_edition_language)), :id => "select_language" %>  
+    <%= f.submit t("articles.change_locale")%>
+  <% end %>
+  <% else %>
+    <label><%= t('articles.your_editing_in') %></label>&nbsp;:&nbsp;
+    <img src="/images/<%= params[:language] || @current_edition_language %>.png" />
+  <% end %>
+
+  <% if @not_translated_languages.size > 0 %>
+  &nbsp;&nbsp;//&nbsp;&nbsp;
+  <%- form_for @article, :url => { :controller => "articles", :action => "edit", :id => @article }, :html => {:method => "get"} do |f| -%>
+    <label for="translate_language"><%= t('articles.translate_this_in') %></label>&nbsp;:&nbsp;
+    <%= select_tag :language, options_for_select(@not_translated_languages), :id => "translate_language" %>  
+    <%= f.submit t("articles.translate")%>
+  <% end %>
+  <% end %>
+  
+  <br/>
+  <em><%= t('articles.translation_warning')%></em>
+</div>
+<div class="clear"></div>
+<% end %>
+
+<h2><%= t('articles.edit_title') %></h2>
+
+
+<%= render :partial => "info" , :locals => { :article => @article }%>
+
+<%- form_for @article, :url => { :controller => "articles", :action => "update", :id => @article } do |f| -%>
+
+  <%= error_messages_for :article %>
+
+  <input type="hidden" name="language" value="<%= params[:language] || @current_edition_language %>" %>
+
+  <%= f.label :title, t('articles.title'), :class => "required" %><br />
+  <input id="article_title" name="article[title]" size="80" tabindex="1" type="text" value="<%= h(@article.title_locale(params[:language] || @current_edition_language)) %>" /><br />
+  <br />
+
+  <%- unless Category.count == 0 -%>
+  <% fields_for @article do |category| %>
+  <%= category.label :category_id, t('articles.category') %>&nbsp;:&nbsp;
+    
+  <%= category.select :category_id, nested_set_options(Category) {|i| "#{'–' * i.level} #{i.name}" }, { :selected => @article.category.id } %><br/>
+  <% end -%>
+  <br/>
+  <%- end -%>
+
+  <br/>
+
+  <%- fields_for @article do |keywords_field| -%>
+    <%= keywords_field.label :keyword_list, t('articles.Keywords') %><br/>
+    <%= keywords_field.text_field :keyword_list,:size => 70, :tabindex => "2" %><br/>
+  <%- end -%>
+  <p id="asset_tag_list"><%= Article.tag_list.join(', ')%></p>
+  <br/>
+
+  <p>
+  <%= link_to t('articles.open_asset_gallery'), gallery_admin_assets_url, :popup => ['gallery', "height=600,width=800,scrollbars=yes"] %>
+  </p>
+
+  <%= f.label :intro, t('articles.intro') %><br />  
+    
+  <textarea cols="80" id="article_intro" name="article[intro]" rows="10" tabindex="3", class="mceEditor">
+    <%= @article.intro_with_form(params[:language] || @current_edition_language) %>
+  </textarea><br />
+
+  <%= f.label :content, t('articles.content') %><br />
+  <textarea cols="80" id="article_content" name="article[content]" rows="26" tabindex="4", class="mceEditor">
+    <%= @article.content_with_form(params[:language] || @current_edition_language) %>
+  </textarea><br />
+  
+  
+  <%= f.submit t('articles.update') %>
+  <%= link_to t('cancel'), admin_cms_articles_url %>
+<%- end -%>

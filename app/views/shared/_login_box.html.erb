@@ -1,0 +1,28 @@
+<div id="login_box">
+  
+  <%- unless @current_user.nil? -%>
+    <%= @current_user.email %>&nbsp;|&nbsp;
+    <%= link_to t('authlogic.my_account'), account_url %>&nbsp;|&nbsp;
+  <%- end -%>
+  
+  <%- unless request.request_uri =~ /admin/ -%>
+    <%- if edit_article? && !@article.nil? -%>
+      <%= link_to t('articles.edit_action'), edit_admin_cms_article_url(@article) %>&nbsp;|&nbsp;
+    <%- end -%>
+    <%= link_to t('authlogic.home'), root_url %>&nbsp;|&nbsp;
+  <%- end %>
+  <%- if @current_user.nil? -%>
+    <%= link_to t('authlogic.users.signin'), signin_url %>&nbsp;|&nbsp;
+    <%= link_to t('authlogic.login'), login_url %>
+  <%- else -%>    
+    <%- if show_private? -%>
+      <%- if request.request_uri =~ /admin/ -%>
+        <%= link_to t('authlogic.site'), root_url %>&nbsp;|&nbsp;
+      <%- else -%>
+        <%= link_to t('authlogic.admin'), admin_home_url %>&nbsp;|&nbsp;
+      <%- end -%>
+    <%- end -%>
+    
+    <%= link_to t('authlogic.logout'), logout_url %>
+  <%- end -%>
+</div>

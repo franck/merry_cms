@@ -1,0 +1,95 @@
+body {
+  background: #EEE;
+}
+
+#toggle-all {
+  font-size:0.9em;
+  color:#333;
+}
+.clear {
+  height:1%;
+  clear:both;
+}
+
+a.show-scenario{
+  font-size:0.8em;
+  display:block;
+  float:left;
+}
+
+.specs {
+  background: red;
+}
+
+.cucumber {
+  color: #333;
+  padding: 1em;
+  font-family: Helvetica;
+  font-size: 14px;
+}
+
+.cucumber h2 {
+  color: #194E84;
+  margin:0;
+  margin-top:30px;
+  font-size:1.2em;
+  border-bottom:1px solid;
+}
+
+.cucumber h3 {
+  float:left;
+  margin:0.2em;
+  margin-left:10px;
+  font-size:0.9em;
+}
+
+.cucumber p {
+  margin:1em 0;
+}
+
+.cucumber .passed {
+  color: green;
+}
+.cucumber .undefined {
+  color: #F68B1F;
+}
+.cucumber .pending {
+  color: #F68B1F;
+}
+.cucumber .failed {
+  color: #84002E;
+}
+.cucumber .skipped {
+  color: #005DB3;
+}
+.cucumber .outline {
+  color: #005DB3;
+}
+.cucumber .param {
+  font-weight: bold;
+}
+.cucumber a {
+  text-decoration: none;
+  color: inherit;
+}
+.cucumber a:hover {
+  text-decoration: underline;
+}
+.cucumber a:visited {
+  font-weight: normal;
+}
+.cucumber ol {
+  list-style: none;
+  display:none;
+}
+.cucumber .stats {
+  margin: 2em;
+}
+.cucumber .summary ul.features li {
+  display: inline;
+}
+.cucumber .backtrace {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 1em;
+}

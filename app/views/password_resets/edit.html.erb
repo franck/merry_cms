@@ -1,0 +1,14 @@
+<h2><%= t('authlogic.password_resets.change_my_password')%></h2>
+
+<% form_for @user, :url => password_reset_path, :method => :put do |f| %>
+  
+  <%= error_messages_for :user, :header_message => t('ce.authlogic.error_messages.header_message'), :message => "" %>
+  
+  <%= f.label t('authlogic.attributes.user.password') %><br />
+  <%= f.password_field :password %><br />
+  <br />
+  <%= f.label t('authlogic.attributes.user.password_confirmation') %><br />
+  <%= f.password_field :password_confirmation %><br />
+  <br />
+  <%= f.submit t('authlogic.password_resets.update') %>
+<% end %>

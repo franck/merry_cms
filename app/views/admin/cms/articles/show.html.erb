@@ -1,0 +1,39 @@
+<%= render :partial => "toplinks" , :locals => { :article => @article }%>
+
+<% if params[:language].blank? %>
+
+<h2><%= @article.title %></h2>
+
+<%= render :partial => "info" , :locals => { :article => @article }%>
+
+<div id="article">
+<div id="article_intro">
+<%= @article.intro.blank? ? t('articles.no_intro') : @article.intro %>
+</div>
+
+<div id="article_content">
+<%= @article.content.blank? ? t('articles.no_content') : @article.content %>
+</div>
+</div>
+
+<% else %>
+
+<h2><%= @article.title_locale(params[:language]) %></h2>
+
+<%= render :partial => "info" , :locals => { :article => @article }%>
+
+<div id="article">
+<div id="article_intro">
+<%= @article.intro.blank? ? t('articles.no_intro') : @article.intro_locale(params[:language]) %>
+</div>
+
+<div id="article_content">
+<%= @article.content.blank? ? t('articles.no_content') : @article.content_locale(params[:language]) %>
+</div>
+</div>
+
+<% end %>
+
+<div id="article_sidebar"><div class="c">
+  <%= render :partial => "sidebar", :locals => { :article => @article }%>
+</div></div>

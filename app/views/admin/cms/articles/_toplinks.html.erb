@@ -1,0 +1,21 @@
+<div id="toplinks">
+
+<%= link_to "&laquo;&nbsp;" + t('articles.index'), admin_cms_articles_url %>&nbsp;
+
+<% if params[:language].blank? %>
+  <%= link_to t('articles.edit_action'), edit_admin_cms_article_url(@article) %>&nbsp;
+<% else %>
+  <%= link_to t('articles.edit_action'), edit_admin_cms_article_url(@article, :language => params[:language]) %>&nbsp;
+<% end %>
+  
+<%= events_links(@article, "&nbsp;") %>
+
+<% if @not_translated_languages.size > 0 %>
+  <%- form_for @article, :url => { :controller => "articles", :action => "edit", :id => @article }, :html => {:method => "get"} do |f| -%>
+    <label for="translate_language"><%= t('articles.translate_this_in') %></label>&nbsp;:&nbsp;
+    <%= select_tag :language, options_for_select(@not_translated_languages), :id => "translate_language" %>  
+    <%= f.submit t("articles.translate")%>
+  <% end %>
+<% end %>
+</div>
+<div class="clear"></div>

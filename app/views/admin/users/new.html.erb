@@ -1,0 +1,27 @@
+<h2><%= t('users.add_user_title') %></h2>
+
+<% form_for @user, :url => { :controller => "users", :action => "create" } do |f| -%>
+
+  <%= error_messages_for :user %>
+  
+  <%= f.label :email, "Email", :class => "required" %><br />
+  <%= f.text_field :email %><br />
+  <br />
+  <%= f.label :password, t('authlogic.attributes.user.password'), :class => "required" %><br />
+  <%= f.password_field :password %><br />
+  <br />
+  <%= f.label :password_confirmation, t('authlogic.attributes.user.password_confirmation'), :class => "required" %><br />
+  <%= f.password_field :password_confirmation %><br />
+  <br />
+
+  <% unless @roles.nil? %>
+    <ul id="roles">      
+    <% for role in @roles %>      
+      <li><%= check_box_tag "roles[]", role %><%= t("roles.#{role}") %></li>
+    <% end -%>
+    </ul>
+  <% end -%>
+  
+  <%= f.submit t('users.add') %>
+  <%= link_to t('cancel'), :controller => "users", :action => "index" %>
+<% end -%>

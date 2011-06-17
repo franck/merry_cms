@@ -1,0 +1,10 @@
+<h2><%= t('assets.edit_title') %></h2>
+
+<%- form_for @asset, :url => { :controller => "assets", :action => "update" }, :html => { :multipart => true } do |f| -%>
+  
+  <%= render :partial => "form", :locals => { :f => f } %>
+  
+  <%= submit_tag t('assets.edit') %>
+  <%= back_to_index_link %>
+  
+<%- end -%>

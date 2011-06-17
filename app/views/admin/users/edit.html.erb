@@ -1,0 +1,41 @@
+<h2><%= t('users.edit_title') %></h2>
+
+<div id="user_info">
+  <%= gravatar_for @user %>
+  <ul>
+    <li><strong><%= @user.email %></strong></li>
+    <li><%= t('authlogic.status')%> : <%= @user.active ? t('authlogic.enable') : t('authlogic.disable') %></li>
+    <li><%= t('authlogic.attributes.user.created_at') %> <%=l @user.created_at, :format => :only_date %></li>
+  </ul>
+</div>
+<div class="clear"></div>
+
+<% form_for @user, :url => { :controller => "users", :action => "update", :id => @user } do |f| -%>
+
+  <%= error_messages_for :user %>
+  
+  <%= f.label :email, "Email", :class => "required" %><br />
+  <%= f.text_field :email %><br />
+  <br />
+  <%= f.label :password, t('authlogic.attributes.user.password'), :class => "required" %><br />
+  <%= f.password_field :password %><br />
+  <br />
+  <%= f.label :password_confirmation, t('authlogic.attributes.user.password_confirmation'), :class => "required" %><br />
+  <%= f.password_field :password_confirmation %><br />
+  <br />
+
+  <% unless @roles.nil? %>
+    <ul id="roles">      
+    <% for role in @roles %>
+        <li><%= check_box_tag "roles[]", role, @user.has_role?(role), :disabled => (@user.last_admin? && role == "admin") %><span><%= t("roles.#{role}") %><span></li>
+    <% end -%>
+    </ul>
+  <% end -%>
+  
+  <div class="clear"></div>
+
+  <div class="submit">
+    <%= f.submit "Modifier" %>
+    <%= link_to t('cancel'), :controller => "users", :action => "index" %>
+  </div>
+<% end -%>

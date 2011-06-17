@@ -1,0 +1,11 @@
+<h2><%= t('authlogic.users.register_title') %></h2>
+
+<% form_for @user, :url => account_path do |f| %>
+  
+  <%= error_messages_for :user, :header_message => "", :message => "" %>
+  
+  <%= f.label :email %><br />
+  <%= f.text_field :email %><br />
+  <br />
+  <%= f.submit t('authlogic.users.register') %>
+<% end %>

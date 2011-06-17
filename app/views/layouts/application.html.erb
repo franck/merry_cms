@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+	<%= display_meta_tags :site => @site %>
+
+  <%= stylesheet_link_merged :base %>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <%= javascript_include_merged :base %>
+  
+ </head>
+ <body>
+	<div class="container"><div class="c">
+  	<%= render :partial => 'layouts/flashes' -%>
+  	<div id="admin_nav">
+  	  <%= render :partial => 'shared/language' -%>
+  	  <%= render :partial => 'shared/login_box' %>
+  	</div>
+  	<div class="clear"></div>
+  	<%= yield -%>
+	</div></div>
+</body>
+</html>

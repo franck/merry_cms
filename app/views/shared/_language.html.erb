@@ -1,0 +1,7 @@
+<% if @site_locales.size > 1 %>
+<div id="language">
+<% @site_locales.each do |language_code| -%>
+  <%= link_to language_code, url_for(params.merge(locale_identifier => language_code )), {:class => "#{language_code}" } %>
+<% end -%>
+</div>
+<% end -%>
